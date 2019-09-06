@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/layout/Header';
 import './App.css';
 import Todos from './components/Todos'
+import AddTodo from './components/AddTodo'
 
 
 
@@ -44,12 +45,26 @@ import Todos from './components/Todos'
         todo.id !== id)] });
     }
 
+    // Add Todo
+    addTodo = (title) => {
+        const newTodo = {
+          id: 4,
+          title: title,
+          completed: false
+        }
+        // spread operator makes a copy
+        this.setState({todos: [...this.state.todos, newTodo]})
+    }
+
     render() {
       // console.log(this.state.todos)
       return (
         <div className="App">
-          <Header />
-          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
+          <div className="container">
+              <Header />
+              <AddTodo addTodo={this.addTodo}/>
+              <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
+          </div>
         </div>
       )
     }
