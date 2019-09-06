@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './components/layout/Header';
 import './App.css';
 import Todos from './components/Todos'
 
@@ -36,14 +37,18 @@ import Todos from './components/Todos'
       }) });
     }
 
+    // Delete Todo- user filter method, loops through and based on condition will return another array- return an array of ids that are not passed in
+    // [...]- spread operator, copies everything there in that key
     delTodo = (id) => {
-      console.log(`check ${id}`)
+      this.setState({ todos: [...this.state.todos.filter(todo => 
+        todo.id !== id)] });
     }
 
     render() {
       // console.log(this.state.todos)
       return (
         <div className="App">
+          <Header />
           <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
         </div>
       )
