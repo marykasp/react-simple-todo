@@ -11,7 +11,7 @@ import Todos from './components/Todos'
         {
           id: 1,
           title: 'Take out the trash',
-          completed: true
+          completed: false
         },
         {
           id: 2,
@@ -25,11 +25,21 @@ import Todos from './components/Todos'
         }
       ]
     }
+
+    markComplete = (id) => {
+      this.setState({ todos: this.state.todos.map((todo) => {
+        if(todo.id === id) {
+          todo.completed = !todo.completed
+        }
+        return todo;
+      }) });
+    }
+
     render() {
       // console.log(this.state.todos)
       return (
         <div className="App">
-          <Todos todos={this.state.todos}/>
+          <Todos todos={this.state.todos} markComplete={this.markComplete}/>
         </div>
       )
     }
