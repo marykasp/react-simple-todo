@@ -36,11 +36,15 @@ import Todos from './components/Todos'
       }) });
     }
 
+    delTodo = (id) => {
+      console.log(`check ${id}`)
+    }
+
     render() {
       // console.log(this.state.todos)
       return (
         <div className="App">
-          <Todos todos={this.state.todos} markComplete={this.markComplete}/>
+          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
         </div>
       )
     }

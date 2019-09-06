@@ -15,6 +15,7 @@ class TodoItem extends React.Component {
 
 
     render() {
+        // deconstruction
       const { id, title } = this.props.todo;
 
       return (
@@ -22,7 +23,7 @@ class TodoItem extends React.Component {
             <p>
                 <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/> {' '}
                 { title }
-                <button style={btnStyle}>x</button>
+                <button style={btnStyle} onClick={this.props.delTodo.bind(this, id)}>x</button>
             </p>
           </div>
       )
