@@ -34,19 +34,22 @@ import axios from 'axios';
     // Delete Todo- user filter method, loops through and based on condition will return another array- return an array of ids that are not passed in
     // [...]- spread operator, copies everything there in that key
     delTodo = (id) => {
-      this.setState({ todos: [...this.state.todos.filter(todo => 
-        todo.id !== id)] });
+
+      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(res => this.setState({ todos: [...this.state.todos.filter(todo => 
+        todo.id !== id)] }))
+      
     }
 
     // Add Todo
     addTodo = (title) => {
-        const newTodo = {
-          id: uuid.v4(),
+        axios.post('https://jsonplaceholder.typicode.com/todos', {
           title: title,
           completed: false
-        }
+        })
+        .then(res => this.setState({todos: [...this.state.todos, res.data]}))
         // spread operator makes a copy
-        this.setState({todos: [...this.state.todos, newTodo]})
+        
     }
 
     render() {
